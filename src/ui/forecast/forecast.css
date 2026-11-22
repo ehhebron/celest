@@ -1,0 +1,254 @@
+.forecast {
+  display: grid;
+  gap: 1.4rem;
+  animation: rise 0.6s var(--ease-out);
+}
+.fc-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+.fc-head h2 {
+  font-size: clamp(1.8rem, 4vw, 2.4rem);
+  font-weight: 400;
+  margin: 0.15rem 0 0.4rem;
+}
+.fc-intro {
+  max-width: 52ch;
+}
+.notice-inline {
+  font-size: 0.84rem;
+  color: var(--ink-soft);
+  border: 1px solid rgba(207, 174, 106, 0.25);
+  background: rgba(207, 174, 106, 0.06);
+  border-radius: 10px;
+  padding: 0.6rem 0.85rem;
+}
+
+/* Cycle cards */
+.fc-cycles {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 0.9rem;
+}
+.fc-card {
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: linear-gradient(180deg, var(--surface), var(--surface-end));
+  padding: 1rem 1.1rem;
+  display: grid;
+  gap: 0.5rem;
+  align-content: start;
+}
+.fc-card h3 {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  flex-wrap: wrap;
+  font-size: 1.3rem;
+}
+.fc-card h3 .glyph {
+  color: var(--gold);
+}
+.fc-card h3 .transit-tone {
+  color: var(--harmonious);
+}
+.fc-card p {
+  line-height: 1.5;
+}
+.fc-strong {
+  color: var(--ink);
+  font-weight: 600;
+}
+.fc-card .link-btn {
+  justify-self: start;
+}
+
+/* Window bar */
+.wbar {
+  margin: 0.2rem 0 0.1rem;
+}
+.wbar-track {
+  position: relative;
+  height: 6px;
+  border-radius: 6px;
+  background: linear-gradient(90deg, transparent, var(--gold-dim) 12%, var(--gold-dim) 88%, transparent);
+}
+.wbar-exact {
+  position: absolute;
+  top: 50%;
+  width: 10px;
+  height: 10px;
+  margin: -5px 0 0 -5px;
+  border-radius: 50%;
+  background: var(--gold-bright);
+  box-shadow: 0 0 0 3px var(--bg-sheet);
+}
+.wbar-now {
+  position: absolute;
+  top: -5px;
+  bottom: -5px;
+  width: 2px;
+  margin-left: -1px;
+  background: var(--harmonious);
+  border-radius: 2px;
+}
+.wbar-labels {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.72rem;
+  color: var(--muted);
+  margin-top: 0.35rem;
+  font-variant-numeric: tabular-nums;
+}
+
+/* Feed */
+.fc-filter {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  border-top: 1px solid var(--line);
+  padding-top: 1.2rem;
+}
+.fc-month-label {
+  font-family: var(--serif);
+  font-weight: 500;
+  font-size: 1.35rem;
+  margin: 0 0 0.3rem;
+}
+.fc-feed {
+  list-style: none;
+  margin: 0 0 0.8rem;
+  padding: 0;
+}
+.fc-item {
+  display: grid;
+  grid-template-columns: 44px 34px 1fr;
+  gap: 0.75rem;
+  padding: 0.9rem 0;
+  border-top: 1px solid var(--line);
+}
+.fc-date {
+  display: grid;
+  justify-items: center;
+  align-content: start;
+  line-height: 1.1;
+  padding-top: 0.1rem;
+}
+.fc-day {
+  font-family: var(--serif);
+  font-size: 1.5rem;
+  font-variant-numeric: tabular-nums;
+}
+.fc-wd {
+  font-size: 0.68rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.fc-now {
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--harmonious);
+  padding-top: 0.45rem;
+}
+.fc-glyph {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  border: 1px solid var(--line-strong);
+  display: grid;
+  place-items: center;
+  color: var(--gold);
+}
+.fc-glyph.transit-tone {
+  color: var(--harmonious);
+}
+.fc-item.is-major .fc-glyph {
+  border-color: var(--gold-dim);
+  background: radial-gradient(circle, rgba(207, 174, 106, 0.14), transparent 70%);
+}
+.fc-text {
+  display: grid;
+  gap: 0.3rem;
+  min-width: 0;
+}
+.fc-text .eyebrow {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+.fc-major,
+.fc-ongoing {
+  font-size: 0.6rem;
+  letter-spacing: 0.12em;
+  border-radius: 999px;
+  padding: 0.05rem 0.45rem;
+}
+.fc-major {
+  color: var(--gold-bright);
+  border: 1px solid var(--gold-dim);
+}
+.fc-ongoing {
+  color: var(--harmonious);
+  border: 1px solid var(--line-strong);
+}
+.fc-text h5 {
+  margin: 0;
+  font-family: var(--serif);
+  font-weight: 500;
+  font-size: 1.22rem;
+  line-height: 1.2;
+}
+.fc-body {
+  font-size: 0.9rem;
+  line-height: 1.55;
+  color: var(--ink-soft);
+}
+.fc-actions {
+  display: flex;
+  gap: 1rem;
+  margin-top: 0.1rem;
+}
+.fc-footnote {
+  font-size: 0.76rem;
+  color: var(--muted);
+  border-top: 1px solid var(--line);
+  padding-top: 0.9rem;
+}
+.fc-skeleton .fc-card {
+  min-height: 140px;
+}
+.fc-skeleton .shimmer {
+  display: block;
+  height: 12px;
+  border-radius: 6px;
+  background: linear-gradient(90deg, var(--shimmer-a), var(--shimmer-b), var(--shimmer-a));
+  background-size: 200% 100%;
+  animation: shimmer 1.2s linear infinite;
+  width: 85%;
+}
+.fc-skeleton .shimmer.short {
+  width: 40%;
+}
+@keyframes shimmer {
+  to { background-position: -200% 0; }
+}
+.fc-state {
+  color: var(--danger);
+}
+
+@media (max-width: 760px) {
+  .fc-item {
+    grid-template-columns: 38px 1fr;
+  }
+  .fc-glyph {
+    display: none;
+  }
+}

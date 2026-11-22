@@ -1,0 +1,241 @@
+/* North Indian chart */
+.north-wrap {
+  width: 100%;
+  max-width: min(100%, 72vh, 640px);
+  margin: 0 auto;
+}
+.north-chart {
+  display: block;
+  width: 100%;
+  height: auto;
+  font-family: var(--sans);
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+.north-chart .nh-lines {
+  fill: none;
+  stroke: var(--gold);
+  stroke-opacity: 0.75;
+  stroke-width: 1.4;
+  pointer-events: none;
+}
+.north-chart .nh-cell {
+  fill: transparent;
+  cursor: pointer;
+  outline: none;
+  transition: fill 0.35s var(--ease-out);
+}
+.north-chart .nh-house:hover .nh-cell,
+.north-chart .nh-house.is-lit .nh-cell,
+.north-chart .nh-house.is-selected .nh-cell {
+  fill: rgba(207, 174, 106, 0.12);
+}
+.north-chart .nh-house.is-aspected .nh-cell {
+  fill: color-mix(in oklab, var(--harmonious) 14%, transparent);
+}
+.north-chart .nh-cell:focus-visible {
+  stroke: var(--gold-bright);
+  stroke-width: 2;
+}
+.north-chart .nh-sign {
+  fill: var(--muted);
+  font-size: 15px;
+  text-anchor: middle;
+  pointer-events: none;
+  font-variant-numeric: tabular-nums;
+}
+.north-chart .lagna-mark {
+  fill: var(--gold-bright);
+  font-size: 17px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-anchor: middle;
+  pointer-events: none;
+}
+.north-chart .graha-label {
+  fill: var(--ink);
+  font-size: 18px;
+  font-weight: 500;
+  text-anchor: middle;
+  cursor: pointer;
+  outline: none;
+  font-variant-numeric: tabular-nums;
+  transition: fill 0.3s;
+}
+.north-chart .graha-label.is-small {
+  font-size: 15px;
+}
+.north-chart .graha-label.is-exalted {
+  fill: color-mix(in oklab, var(--harmonious) 70%, var(--ink));
+}
+.north-chart .graha-label.is-debilitated {
+  fill: color-mix(in oklab, var(--challenging) 70%, var(--ink));
+}
+.north-chart .graha-label:hover,
+.north-chart .graha-label.is-focus,
+.north-chart .graha-label.is-selected,
+.north-chart .graha-label:focus-visible {
+  fill: var(--gold-bright);
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+.north-key {
+  font-size: 0.75rem;
+  line-height: 1.5;
+  text-align: center;
+  margin: 0.8rem auto 0;
+  max-width: 56ch;
+}
+
+/* Planets table */
+.chart-table .dig-exalted,
+.chart-table .dig-moolatrikona,
+.chart-table .dig-own {
+  color: color-mix(in oklab, var(--harmonious) 70%, var(--ink));
+}
+.chart-table .dig-debilitated,
+.chart-table .dig-enemy {
+  color: color-mix(in oklab, var(--challenging) 70%, var(--ink));
+}
+
+/* Dasha timeline */
+.dasha-view {
+  display: grid;
+  gap: 1rem;
+}
+.dasha-title {
+  font-family: var(--serif);
+  font-size: 1.6rem;
+  font-weight: 500;
+  margin: 0;
+}
+.dasha-intro {
+  margin: -0.4rem 0 0;
+  font-size: 0.88rem;
+  line-height: 1.55;
+  max-width: 64ch;
+}
+.dasha-bar {
+  position: relative;
+  display: flex;
+  height: 30px;
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid var(--line);
+}
+.dasha-bar .seg {
+  display: grid;
+  place-items: center;
+  font-size: 0.7rem;
+  color: var(--ink-soft);
+  border-right: 1px solid var(--line);
+  background: var(--surface-end);
+  overflow: hidden;
+}
+.dasha-bar .seg.is-now {
+  background: rgba(207, 174, 106, 0.2);
+  color: var(--gold-bright);
+  font-weight: 600;
+}
+.dasha-bar .now-mark {
+  position: absolute;
+  top: -2px;
+  bottom: -2px;
+  width: 2px;
+  background: var(--gold-bright);
+}
+.dasha-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 0.35rem;
+}
+.dasha-list button {
+  width: 100%;
+  display: flex;
+  gap: 0.8rem;
+  align-items: center;
+  text-align: left;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: transparent;
+  padding: 0.7rem 0.9rem;
+  color: var(--ink);
+  cursor: pointer;
+  transition: background 0.3s var(--ease-out), border-color 0.3s;
+}
+.dasha-list button:hover {
+  background: var(--surface);
+}
+.dasha-list .is-now button {
+  border-color: var(--gold-dim);
+  background: rgba(207, 174, 106, 0.08);
+}
+.dasha-list .is-past button {
+  opacity: 0.55;
+}
+.dl-glyph {
+  color: var(--gold);
+  display: inline-flex;
+}
+.dl-text {
+  display: grid;
+  gap: 0.15rem;
+  flex: 1;
+}
+.dl-name {
+  font-size: 0.95rem;
+}
+.dl-dates {
+  font-size: 0.78rem;
+  color: var(--muted);
+  font-variant-numeric: tabular-nums;
+}
+.now-chip {
+  margin-left: 0.5rem;
+  font-size: 0.62rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--on-gold);
+  background: var(--gold);
+  padding: 0.1rem 0.45rem;
+  border-radius: 999px;
+  vertical-align: 2px;
+}
+.dl-progress {
+  height: 4px;
+  border-radius: 999px;
+  background: var(--line);
+  overflow: hidden;
+  margin-top: 0.25rem;
+}
+.dl-progress span {
+  display: block;
+  height: 100%;
+  background: var(--gold);
+}
+.aspect-list .static.is-now {
+  color: var(--gold-bright);
+}
+
+/* Detail extras */
+.rx-chip.vedic-chip {
+  margin-left: 0.4rem;
+  color: var(--ink-soft);
+  border-color: var(--line-strong);
+}
+.rx-chip.vedic-chip.chip-exalted,
+.rx-chip.vedic-chip.chip-own-sign,
+.rx-chip.vedic-chip.chip-moolatrikona {
+  color: var(--harmonious);
+  border-color: color-mix(in oklab, var(--harmonious) 50%, transparent);
+}
+.rx-chip.vedic-chip.chip-debilitated,
+.rx-chip.vedic-chip.chip-enemy-sign,
+.rx-chip.vedic-chip.chip-combust {
+  color: var(--challenging);
+}
+.vedic-mobile-overview {
+  margin-top: 1rem;
+}

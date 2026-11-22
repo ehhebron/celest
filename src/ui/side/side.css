@@ -1,0 +1,367 @@
+.side-wrap {
+  display: grid;
+  gap: 0.6rem;
+}
+.side-controls {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+.side-hint {
+  flex: 1;
+  min-width: 10rem;
+  font-size: 0.75rem;
+  color: var(--muted);
+}
+.side-reset:disabled {
+  opacity: 0.4;
+  cursor: default;
+}
+
+.side-stage {
+  position: relative;
+  border-radius: 24px;
+  outline: none;
+  transition: background 1.2s var(--ease-out);
+}
+.side-stage:focus-visible {
+  box-shadow: 0 0 0 1.5px var(--gold-bright);
+}
+.side-stage.is-day {
+  background: radial-gradient(ellipse 70% 50% at 50% 38%, color-mix(in oklab, var(--air) 9%, transparent), transparent 70%);
+}
+.side-stage.is-night {
+  background: radial-gradient(ellipse 70% 50% at 50% 38%, var(--glow-cool), transparent 70%);
+}
+
+.sky3d {
+  touch-action: pan-y;
+}
+.sky3d.is-standing {
+  cursor: grab;
+}
+.sky3d.is-standing:active {
+  cursor: grabbing;
+}
+
+/* Below the horizon: present but receding. */
+.sky3d .layer.is-below {
+  opacity: 0.5;
+}
+
+.sky3d .ring.soft {
+  stroke-opacity: 0.45;
+}
+.sky3d .sign-sector {
+  cursor: pointer;
+}
+.sky3d .sign .hit {
+  fill: transparent;
+}
+
+.sky3d .ground-disc {
+  fill: var(--bg);
+  fill-opacity: 0.72;
+  stroke: var(--gold);
+  stroke-opacity: 0.6;
+  stroke-width: 1.2;
+}
+.sky3d .compass {
+  fill: var(--muted);
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-anchor: middle;
+}
+.sky3d .dome path {
+  fill: none;
+  stroke: var(--ink);
+  stroke-opacity: 0.14;
+  stroke-width: 0.9;
+  stroke-dasharray: 2 6;
+}
+.sky3d .dome-label {
+  fill: var(--muted);
+  font-size: 12px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  text-anchor: middle;
+}
+.sky3d .observer line {
+  stroke: var(--ink-soft);
+  stroke-width: 1.6;
+  stroke-linecap: round;
+}
+.sky3d .observer circle {
+  fill: var(--ink-soft);
+}
+.sky3d .observer .observer-base {
+  fill: var(--gold);
+}
+
+.sky3d .stem {
+  stroke: var(--gold);
+  stroke-opacity: 0.55;
+  stroke-width: 1;
+  stroke-dasharray: 2 4;
+}
+.sky3d .foot {
+  fill: var(--gold);
+  opacity: 0.6;
+}
+.sky3d .true-dot {
+  fill: var(--gold-bright);
+}
+.sky3d .alt-label {
+  fill: var(--gold-bright);
+  font-size: 15px;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  paint-order: stroke;
+  stroke: var(--bg);
+  stroke-width: 4px;
+}
+.sky3d .sun-glow {
+  fill: url(#side-sun-glow);
+  pointer-events: none;
+}
+/* The planet glyphs sit over linework, so give them a backing in 3D. */
+.sky3d .planet-glyph .hit {
+  fill: var(--bg);
+  fill-opacity: 0.55;
+}
+
+/* Panel under the figure */
+.side-panel {
+  display: grid;
+  gap: 1.25rem;
+}
+.sect-card {
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  padding: 1rem 1.15rem;
+  background: linear-gradient(180deg, var(--surface), var(--surface-end));
+}
+.sect-card h3 {
+  font-family: var(--serif);
+  font-size: 1.5rem;
+  font-weight: 500;
+  margin: 0.1rem 0 0.35rem;
+}
+.sect-card p {
+  margin: 0.35rem 0 0;
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+.sect-card.is-day h3 {
+  color: var(--gold-bright);
+}
+.side-table caption .muted {
+  font-family: var(--sans);
+  font-size: 0.8rem;
+}
+.side-table tr.is-below th,
+.side-table tr.is-below td {
+  color: var(--ink-soft);
+  opacity: 0.75;
+}
+.side-table .horizon-row td {
+  padding: 0.15rem 0;
+  border-bottom: 1px solid var(--gold-dim);
+  text-align: center;
+}
+.side-table .horizon-row span {
+  font-size: 0.62rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+.side-note {
+  font-size: 0.75rem;
+  line-height: 1.5;
+  margin: 0.6rem 0 0;
+}
+.side-empty {
+  padding: 1.25rem;
+}
+
+@media (max-width: 760px) {
+  .side-table th:nth-child(5),
+  .side-table td:nth-child(5) {
+    display: none;
+  }
+  .side-table th,
+  .side-table td {
+    padding: 0.45rem 0.35rem;
+  }
+}
+
+/* "Your sky" overview */
+.side-panel-title {
+  font-family: var(--serif);
+  font-size: 1.9rem;
+  font-weight: 500;
+  margin: 0.5rem 0 0;
+}
+.side-panel-intro {
+  margin: -0.6rem 0 0;
+  font-size: 0.9rem;
+  line-height: 1.55;
+  max-width: 62ch;
+}
+.sky-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1rem;
+}
+.sky-card {
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  padding: 1rem 1.15rem;
+  background: linear-gradient(180deg, var(--surface), var(--surface-end));
+}
+.sky-card h3 {
+  font-family: var(--serif);
+  font-size: 1.4rem;
+  font-weight: 500;
+  margin: 0.1rem 0 0.35rem;
+}
+.sky-card p {
+  margin: 0.45rem 0 0;
+  font-size: 0.88rem;
+  line-height: 1.5;
+}
+.sky-card .small {
+  font-size: 0.75rem;
+}
+.team-list,
+.standout-list,
+.flat-list {
+  list-style: none;
+  padding: 0;
+  margin: 0.7rem 0 0;
+  display: grid;
+  gap: 0.55rem;
+}
+.team-list li,
+.standout-list li {
+  display: grid;
+  gap: 0.15rem;
+}
+.team-list .row-btn > span,
+.standout-list .row-btn > span {
+  display: grid;
+}
+.team-list .glyph,
+.standout-list .glyph {
+  color: var(--gold);
+  flex: none;
+}
+.team-role {
+  font-size: 0.66rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+.team-name {
+  font-size: 0.9rem;
+}
+.team-note {
+  font-size: 0.78rem;
+  padding-left: calc(16px + 0.45rem);
+}
+.standout-list .small {
+  padding-left: calc(18px + 0.45rem);
+}
+.flat-list .row-btn {
+  display: block;
+  font-size: 0.86rem;
+  line-height: 1.45;
+  text-decoration: underline;
+  text-decoration-color: var(--gold-dim);
+  text-underline-offset: 3px;
+}
+.hemi-bars {
+  display: grid;
+  gap: 0.4rem;
+  margin: 0.6rem 0 0.2rem;
+}
+.hemi-bar {
+  display: grid;
+  grid-template-columns: 3.2rem 1fr 2.6rem;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: 0.75rem;
+  color: var(--ink-soft);
+}
+.hemi-bar .bar {
+  height: 6px;
+  border-radius: 999px;
+  background: var(--line);
+  overflow: hidden;
+}
+.hemi-bar .bar span {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  background: var(--gold);
+}
+.hemi-bar .num {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+/* "In the sky" section inside a reading */
+.sky-detail {
+  margin-top: 1.1rem;
+  padding-top: 0.2rem;
+  border-top: 1px solid var(--line);
+}
+.sky-headline {
+  font-family: var(--serif);
+  font-size: 1.15rem;
+  margin: 0.2rem 0 0.6rem;
+  color: var(--gold-bright);
+}
+.sky-facts {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 0.5rem 1rem;
+  margin: 0 0 0.75rem;
+}
+.sky-facts dt {
+  font-size: 0.62rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.sky-facts dd {
+  margin: 0.1rem 0 0;
+  font-size: 0.86rem;
+}
+.sky-picture {
+  margin-top: 0.9rem;
+  padding: 0.75rem 0.9rem;
+  border-radius: 12px;
+  background: var(--surface-end);
+  border: 1px solid var(--line);
+}
+.sky-picture h4 {
+  margin: 0 0 0.5rem;
+  font-size: 0.62rem;
+}
+.sky-picture .sky-facts {
+  margin-bottom: 0.4rem;
+}
+.sky-picture p {
+  margin: 0.3rem 0 0;
+  line-height: 1.5;
+}
+.summary-card {
+  grid-column: 1 / -1;
+}
+.summary-card p:not(.eyebrow) {
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
