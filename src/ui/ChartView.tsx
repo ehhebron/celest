@@ -20,6 +20,7 @@ import { useTimeTravel } from './useTimeTravel'
 import { ChartWheel } from './wheel/ChartWheel'
 import { SideView } from './side/SideView'
 import { VedicScreen } from './vedic/VedicScreen'
+import { VEDIC_ENABLED } from '../features'
 import './chart-view.css'
 
 const ShareDialog = lazy(() => import('./share/ShareDialog'))
@@ -153,8 +154,9 @@ function ChartScreen({ chart, route, animateIn, onHome, onSystem }: Props & { ch
 
   const sky = useMemo(() => (view === 'side' ? horizonModel(chart) : null), [view, chart])
 
-  const isVedic = route.system === 'vedic'
-  const systemSelect = (
+  // Links and saved charts set to Vedic open as Western while the feature is hidden.
+  const isVedic = VEDIC_ENABLED && route.system === 'vedic'
+  const systemSelect = VEDIC_ENABLED ? (
     <label className="house-select">
       <span className="visually-hidden">Astrology system and houses</span>
       <select value={isVedic ? 'vedic' : route.houseSystem} onChange={(e) => onSystem(e.target.value as HouseSystem | 'vedic')}>
@@ -176,6 +178,16 @@ function ChartScreen({ chart, route, animateIn, onHome, onSystem }: Props & { ch
         )}
       </select>
     </label>
+  ) : (
+    chart.timeKnown && (
+      <label className="house-select">
+        <span className="visually-hidden">House system</span>
+        <select value={route.houseSystem} onChange={(e) => onSystem(e.target.value as HouseSystem)}>
+          <option value="whole-sign">Whole Sign houses</option>
+          <option value="placidus">Placidus houses</option>
+        </select>
+      </label>
+    )
   )
 
   const detail = (
